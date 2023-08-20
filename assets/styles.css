@@ -28,3 +28,11 @@ body {
     color: red;
 }
 
+#high_score_page {
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    background-color: rgb(124, 186, 214);
+    width: 300px;
+
+}

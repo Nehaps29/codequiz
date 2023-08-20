@@ -233,6 +233,7 @@ function display_score() {
     document.querySelector("#last_page").style.display = "block";
    // array_score.push(score);
     //localStorage.setItem("array_score", JSON.stringify(array_score));
+   
    var yourScoreMessage = document.createElement("p");
    yourScoreMessage = "Your score is " + score;
    document.querySelector("#last_page").append(yourScoreMessage);
@@ -250,6 +251,7 @@ function showFirstPage() {
 // function to display highest score
 function showHigestSCore(event){
     event.preventDefault();
+    lastPage.style.display = "none";
     console.log("inside show highest score");
     high_score_page.style.display = "block";
     var initials = document.forms["username"]["name"].value;
@@ -258,8 +260,17 @@ function showHigestSCore(event){
     localStorage.setItem("array_score", JSON.stringify(array_score));
     var highScoreArray = JSON.parse(localStorage.getItem("array_score"));
     console.log(highScoreArray);
-    console.log(highScoreArray['ini']);
-    console.log(highScoreArray.sc);
+    console.log(highScoreArray[0].ini);
+    console.log(highScoreArray[0].sc);
+    for (let i = 0; i<highScoreArray.length; i++) {
+        console.log(highScoreArray[i].ini);
+        console.log(highScoreArray[i].sc);
+        var savedInitialScore = document.createElement("div");
+        savedInitialScore.innerHTML = "Initials: " + [highScoreArray[i].ini]+ ", Score: " + highScoreArray[i].sc;
+        
+        document.querySelector("#high_score_page").append(savedInitialScore);
+
+    }
     
 }
 
