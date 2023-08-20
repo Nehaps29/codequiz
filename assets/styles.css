@@ -25,5 +25,6 @@ body {
 
 #a1:hover, #a2:hover, #a3:hover, #a4:hover{
     background-color: blue;
+    color: red;
 }
 

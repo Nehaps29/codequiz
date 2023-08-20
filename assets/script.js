@@ -7,7 +7,7 @@ var a2 = document.querySelector("#a2");
 var a3 = document.querySelector("#a3");
 var a4 = document.querySelector("#a4");
 var display_question = document.querySelector(".questionsDisplayed");
-var next = document.querySelector("#next");
+//var next = document.querySelector("#next");
 var startAgain = document.querySelector("#start_again");
 var showHighestScore = document.querySelector("#show_highest_score");
 var questionIndex = 0;
@@ -26,7 +26,7 @@ lastPage.style.display= "none";
 high_score_page.style.display = "none";
 startButton.addEventListener("click", startQuiz);
 startButton.addEventListener("click", startQuiz);
-next.addEventListener("click", nextF);
+//next.addEventListener("click", nextF);
 var userInput = "";
 
 
@@ -93,7 +93,7 @@ var quizQuestion = [
 ]   
 
 //function after next button is clicked and check various condition to calculate score and move 
-function nextF (){
+/*function nextF (){
     var ui = userInput;
     a1.style.color="black";
     a2.style.color="black";
@@ -118,7 +118,7 @@ function nextF (){
         showQuestion(questionIndex);
     }
 
-}
+}*/
 // function to display question 
 function showQuestion (countQ) {
     q1.innerHTML = "<h3>"+quizQuestion[countQ].question+"<h3/>";
@@ -130,37 +130,93 @@ function showQuestion (countQ) {
 // function to get user answer and add style to it
 function selectedAnswerA(){
     userInput = a1.innerHTML;
-    a1.style.color="red";
-    a2.style.color="black";
-    a3.style.color="black";
-    a4.style.color="black";
+    if (userInput == quizQuestion[questionIndex].correctAnswer){
+        
+        score=score+1;
+     } else {
+        answerStatus = false;
+     }
+    
+    if (questionIndex==7){
+    
+       display_score();
+       
+       return
+    }
+    
+    if (questionIndex<8){
+        questionIndex++;
+        showQuestion(questionIndex);
+    }
    
 }
 
 function selectedAnswerB(){
     userInput = a2.innerHTML;
-    a1.style.color="black";
-    a2.style.color="red";
-    a3.style.color="black";
-    a4.style.color="black";
+    if (userInput == quizQuestion[questionIndex].correctAnswer){
+        
+        score=score+1;
+     } else {
+        answerStatus = false;
+     }
+    
+    if (questionIndex==7){
+    
+       display_score();
+       
+       return
+    }
+    
+    if (questionIndex<8){
+        questionIndex++;
+        showQuestion(questionIndex);
+    }
    
 }
 
 function selectedAnswerC(){
     userInput = a3.innerHTML;
-    a1.style.color="black";
-    a2.style.color="black";
-    a3.style.color="red";
-    a4.style.color="black";
+    if (userInput == quizQuestion[questionIndex].correctAnswer){
+        
+        score=score+1;
+     } else {
+        answerStatus = false;
+     }
+    
+    if (questionIndex==7){
+    
+       display_score();
+       
+       return
+    }
+    
+    if (questionIndex<8){
+        questionIndex++;
+        showQuestion(questionIndex);
+    }
     
 }
 
 function selectedAnswerD(){
     userInput = a4.innerHTML;
-    a1.style.color="black";
-    a2.style.color="black";
-    a3.style.color="black";
-    a4.style.color="red";
+    if (userInput == quizQuestion[questionIndex].correctAnswer){
+        
+        score=score+1;
+     } else {
+        answerStatus = false;
+     }
+    
+    if (questionIndex==7){
+    
+       display_score();
+       
+       return
+    }
+    
+    if (questionIndex<8){
+        questionIndex++;
+        showQuestion(questionIndex);
+    }
     
 }
 
@@ -177,6 +233,9 @@ function display_score() {
     document.querySelector("#last_page").style.display = "block";
    // array_score.push(score);
     //localStorage.setItem("array_score", JSON.stringify(array_score));
+   var yourScoreMessage = document.createElement("p");
+   yourScoreMessage = "Your score is " + score;
+   document.querySelector("#last_page").append(yourScoreMessage);
 
 }
     
@@ -199,8 +258,8 @@ function showHigestSCore(event){
     localStorage.setItem("array_score", JSON.stringify(array_score));
     var highScoreArray = JSON.parse(localStorage.getItem("array_score"));
     console.log(highScoreArray);
-    console.log(Math.max.apply(Math, highScoreArray.sc))
-    //pMessage.innerHTML = initials.valueOf()+" your highest Score is " + Math.max.apply(Math, highScoreArray);
+    console.log(highScoreArray['ini']);
+    console.log(highScoreArray.sc);
     
 }
 
